@@ -5,12 +5,6 @@ function checkTime(i) {
   return i;
 }
 
-function checkHour(i) {
-  if (i > 12) {
-    i = i - 12;
-  }
-  return checkTime(i);
-}
 function checkPeriod(i) {
   if (i > 12) {
     return 2;
@@ -23,8 +17,7 @@ var h = today.getHours();
 var m = today.getMinutes();
 var s = today.getSeconds();
 
-p = checkPeriod(h);
-h = checkHour(h);
+h = checkTime(h);
 m = checkTime(m);
 s = checkTime(s);
 
@@ -50,7 +43,6 @@ s2 = parseInt(a[1]) + 1;
 $("ul.secondPlay2 li:nth-child(" + s1 + ")").addClass("active");
 $("ul.secondPlay li:nth-child(" + s2 + ")").addClass("active");
 
-$("ul.period li:nth-child(" + p + ")").addClass("active");
 
 setInterval(function () {
   secondPlay();
@@ -183,7 +175,7 @@ function hourPlay() {
       .addClass("active")
       .closest("body")
       .addClass("play");
-  } else if (aa.is(":last-child")) {
+  } else if ( aa.is(":last-child") || (aa.is($("ul.hourPlay li").eq(4)) && $("ul.hourPlay2 li.active").is(":last-child"))) {
     $("ul.hourPlay li").removeClass("before");
     aa.addClass("before").removeClass("active");
     aa = $("ul.hourPlay li").eq(0);
@@ -217,38 +209,8 @@ function hourPlay2() {
     aa.addClass("before").removeClass("active");
     aa = $("ul.hourPlay2 li").eq(0);
     aa.addClass("active").closest("body").addClass("play");
-    period();
   } else {
     $("ul.hourPlay2 li").removeClass("before");
-    aa.addClass("before")
-      .removeClass("active")
-      .next("li")
-      .addClass("active")
-      .closest("body")
-      .addClass("play");
-  }
-}
-
-function period() {
-  $("body").removeClass("play");
-  var aa = $("ul.period li.active");
-
-  if (aa.html() == undefined) {
-    aa = $("ul.period li").eq(0);
-    aa.addClass("before")
-      .removeClass("active")
-      .next("li")
-      .addClass("active")
-      .closest("body")
-      .addClass("play");
-  } else if (aa.is(":last-child")) {
-    $("ul.period li").removeClass("before");
-    aa.addClass("before").removeClass("active");
-    aa = $("ul.period li").eq(0);
-    aa.addClass("active").closest("body").addClass("play");
-    period();
-  } else {
-    $("ul.period li").removeClass("before");
     aa.addClass("before")
       .removeClass("active")
       .next("li")
