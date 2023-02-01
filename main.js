@@ -175,7 +175,7 @@ function hourPlay() {
       .addClass("active")
       .closest("body")
       .addClass("play");
-  } else if ( aa.is(":last-child") || (aa.is($("ul.hourPlay li").eq(4)) && $("ul.hourPlay2 li.active").is(":last-child"))) {
+  } else if ( aa.is(":last-child") || (aa.is($("ul.hourPlay li").eq(3)) && $("ul.hourPlay2 li.active").is(":last-child"))) {
     $("ul.hourPlay li").removeClass("before");
     aa.addClass("before").removeClass("active");
     aa = $("ul.hourPlay li").eq(0);
