@@ -12,6 +12,18 @@ function checkPeriod(i) {
   return 1;
 }
 
+function updateDate() {
+  var strDate = new Date();
+  $(".date").html(
+    `&nbsp${strDate.getFullYear()}/${
+      strDate.getMonth() + 1
+    }/${strDate.getDate()} &nbsp ${strDate
+      .toString()
+      .toUpperCase()
+      .substring(0, 4)}`
+  );
+}
+
 var today = new Date();
 var h = today.getHours();
 var m = today.getMinutes();
@@ -49,6 +61,7 @@ setInterval(function () {
 }, 1000);
 
 function secondPlay() {
+  updateDate();
   $("body").removeClass("play");
   var aa = $("ul.secondPlay li.active");
 
@@ -209,6 +222,7 @@ function hourPlay2() {
     aa.addClass("before").removeClass("active");
     aa = $("ul.hourPlay2 li").eq(0);
     aa.addClass("active").closest("body").addClass("play");
+    updateDate();
   } else {
     $("ul.hourPlay2 li").removeClass("before");
     aa.addClass("before")
